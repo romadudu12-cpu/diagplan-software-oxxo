@@ -1,61 +1,91 @@
 # DiagPlan Software — Controle de Estoque OXXO
 
-MVP acadêmico para demonstrar cadastro de produtos, controle de lotes e validade, movimentações de entrada e saída e consulta de estoque.
+MVP acadêmico desenvolvido para demonstrar o cadastro de produtos, controle de lotes e validade, movimentações de entrada e saída e consulta de estoque.
 
-## Tecnologias
-- Python 3.12
+## Tecnologias utilizadas
+
+- Python
 - Flask
-- SQLite (`sqlite3`)
-- HTML, CSS, JavaScript e Bootstrap 5
+- SQLite (sqlite3)
+- HTML
+- CSS
+- JavaScript
+- Bootstrap 5
 - Pytest
 
 ## Funcionalidades do MVP
+
 - Cadastro de produtos com nome, categoria e SKU.
-- Registro de entradas, com criação de lote e validade opcional.
-- Registro de saídas, impedindo retirada acima do estoque disponível.
+- Registro de entradas de produtos.
+- Criação de lotes com datas de validade.
+- Registro de saídas de mercadorias.
+- Controle da quantidade disponível em estoque.
 - Consulta do saldo total por produto.
-- Listagem de lotes e datas de validade.
-- Painel com resumo do estoque, lotes próximos do vencimento e movimentações recentes.
-- Histórico de movimentações.
+- Listagem de lotes e respectivas datas de validade.
+- Identificação de produtos vencidos.
+- Identificação de produtos próximos do vencimento.
+- Painel com resumo do estoque.
+- Histórico de movimentações realizadas.
+
+## Controle de validade dos produtos
+
+O DiagPlan possui funcionalidades para auxiliar no acompanhamento da validade das mercadorias.
+
+- Identifica lotes com produtos vencidos.
+- Permite consultar a situação de cada lote.
+- Prioriza a retirada dos lotes com vencimento mais próximo (FIFO).
+- Impede a saída de produtos com validade vencida.
+- Evita movimentações de saída em quantidade superior ao estoque disponível dentro da validade.
+- Auxilia na prevenção de perdas de mercadorias.
 
 ## Como executar localmente
 
-1. Instale Python 3.12.
+1. Instale o Python.
 2. Abra o terminal na pasta do projeto.
-3. Crie e ative um ambiente virtual:
+3. Crie um ambiente virtual:
 
-   **Windows**
-   ```bash
-   py -3.12 -m venv .venv
-   .venv\Scripts\activate
-   ```
+**Windows**
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
 
-   **Linux/macOS**
-   ```bash
-   python3.12 -m venv .venv
-   source .venv/bin/activate
-   ```
+**Linux/macOS**
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
 
 4. Instale as dependências:
-   ```bash
-   pip install -r requirements.txt
-   ```
+
+```bash
+pip install -r requirements.txt
+```
 
 5. Inicie o sistema:
-   ```bash
-   python app.py
-   ```
 
-6. Acesse `http://127.0.0.1:5000` no navegador.
+```bash
+python app.py
+```
 
-O banco `diagplan.db` é criado automaticamente na primeira execução.
+6. Acesse pelo navegador:
+
+```text
+http://127.0.0.1:5000
+```
+
+O banco de dados `diagplan.db` é criado automaticamente na primeira execução.
 
 ## Executar os testes
+
+Para executar os testes automatizados, utilize:
+
 ```bash
 pytest
 ```
 
-## Estrutura
+## Estrutura do projeto
+
 ```text
 diagplan_oxxo/
 ├── app.py
@@ -76,7 +106,25 @@ diagplan_oxxo/
 ```
 
 ## Limites e próximos passos
-Este é um MVP demonstrativo e não está integrado aos sistemas internos do OXXO. Antes de uso real, recomenda-se adicionar autenticação e perfis de acesso, trilha de auditoria, validação de permissões, proteção CSRF, configuração segura de `SECRET_KEY`, backups e implantação em servidor.
+
+Este projeto é um MVP acadêmico demonstrativo e não possui integração com os sistemas internos da rede OXXO.
+
+Como melhorias futuras, são recomendadas:
+
+- Implementação de autenticação de usuários.
+- Criação de perfis de acesso.
+- Registro de auditoria das operações.
+- Validação de permissões.
+- Proteção contra ataques CSRF.
+- Configuração segura da chave secreta da aplicação.
+- Implementação de backups do banco de dados.
+- Melhorias nos relatórios de estoque.
+- Implantação em servidor para acesso externo.
 
 ## Contexto acadêmico
-Projeto DiagPlan Software, voltado ao problema de controle de mercadorias e acompanhamento de validade em uma loja de conveniência. O sistema é uma proposta acadêmica e não representa produto oficial nem integração com a rede OXXO.
+
+O projeto DiagPlan Software foi desenvolvido com o objetivo de propor uma solução para o controle de mercadorias e acompanhamento de datas de validade em uma loja de conveniência.
+
+A proposta busca facilitar o trabalho dos funcionários e gerentes, melhorar a organização do estoque, identificar produtos próximos do vencimento e reduzir perdas de mercadorias.
+
+O sistema representa uma proposta acadêmica e não possui vínculo ou integração oficial com a rede OXXO.
