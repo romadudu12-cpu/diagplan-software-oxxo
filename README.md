@@ -128,3 +128,5 @@ O projeto DiagPlan Software foi desenvolvido com o objetivo de propor uma soluç
 A proposta busca facilitar o trabalho dos funcionários e gerentes, melhorar a organização do estoque, identificar produtos próximos do vencimento e reduzir perdas de mercadorias.
 
 O sistema representa uma proposta acadêmica e não possui vínculo ou integração oficial com a rede OXXO.
+
+O sistema também permite identificar lotes vencidos e controlar as saídas de acordo com a validade dos produtos.
