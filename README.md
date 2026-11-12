@@ -130,3 +130,25 @@ A proposta busca facilitar o trabalho dos funcionários e gerentes, melhorar a o
 O sistema representa uma proposta acadêmica e não possui vínculo ou integração oficial com a rede OXXO.
 
 O sistema também permite identificar lotes vencidos e controlar as saídas de acordo com a validade dos produtos.
+
+## Auto-revisão técnica do MVP
+
+Foi realizada uma auto-revisão técnica do projeto DiagPlan Software, considerando os seguintes aspectos:
+
+### Arquitetura
+A aplicação utiliza Flask para organizar as rotas e regras de negócio, SQLite para armazenar os dados e HTML, CSS e JavaScript para a interface. Essa estrutura atende ao escopo do MVP e permite futuras melhorias.
+
+### Legibilidade e organização
+O projeto possui arquivos separados para aplicação, modelos de interface, estilos, testes e documentação. Essa organização facilita a manutenção e a identificação de cada responsabilidade.
+
+### Regras de negócio
+Foi revisado o controle de entradas e saídas, a consulta de estoque e o acompanhamento da validade dos lotes. A retirada considera os lotes dentro da validade e prioriza os vencimentos mais próximos.
+
+### Segurança
+Foi identificado que, antes de uma utilização em ambiente real, o sistema precisa de autenticação, controle de permissões, proteção CSRF e configuração segura da chave secreta. O modo de depuração também deve ser desativado em produção.
+
+### Melhorias futuras
+Recomenda-se ampliar os testes automatizados, reforçar as validações dos dados recebidos e implementar controles adicionais de segurança.
+
+### Resultado da revisão
+A estrutura atual atende à proposta acadêmica do MVP. Foram identificados pontos de melhoria para aumentar a segurança, a manutenção e a confiabilidade do sistema.
