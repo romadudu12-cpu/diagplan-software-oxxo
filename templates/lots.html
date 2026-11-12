@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Lotes e validade | DiagPlan{% endblock %}
+{% block content %}
+<h1 class="h3 mb-3">Lotes e validade</h1>
+<div class="card shadow-sm"><div class="table-responsive"><table class="table table-hover mb-0"><thead><tr><th>Produto</th><th>Quantidade atual</th><th>Validade</th><th>Situação</th></tr></thead><tbody>
+{% for lot in lots %}
+<tr><td>{{ lot.product_name }}</td><td>{{ lot.quantity }}</td><td>{{ lot.expiry_date or "Não informada" }}</td><td>
+{% if lot.expiry_date and lot.expiry_date < today %}<span class="badge text-bg-danger">Vencido</span>
+{% elif lot.expiry_date and lot.expiry_date <= (today|string) %}<span class="badge text-bg-warning">Verificar</span>
+{% else %}<span class="badge text-bg-success">Em acompanhamento</span>{% endif %}
+</td></tr>
+{% else %}<tr><td colspan="4" class="text-center text-muted py-3">Nenhum lote cadastrado. Registre uma entrada para criar o primeiro lote.</td></tr>{% endfor %}
+</tbody></table></div></div>
+{% endblock %}

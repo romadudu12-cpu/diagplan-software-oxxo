@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Movimentações | DiagPlan{% endblock %}
+{% block content %}
+<h1 class="h3 mb-3">Movimentações de estoque</h1>
+<div class="card shadow-sm mb-4"><div class="card-body">
+{% if products %}
+<form method="post" class="row g-3">
+  <div class="col-md-4"><label class="form-label">Produto</label><select class="form-select" name="product_id" required><option value="">Selecione</option>{% for p in products %}<option value="{{ p.id }}">{{ p.name }}</option>{% endfor %}</select></div>
+  <div class="col-md-2"><label class="form-label">Tipo</label><select class="form-select" name="movement_type" required><option value="entrada">Entrada</option><option value="saida">Saída</option></select></div>
+  <div class="col-md-2"><label class="form-label">Quantidade</label><input class="form-control" type="number" min="1" name="quantity" required></div>
+  <div class="col-md-4"><label class="form-label">Validade (para entrada)</label><input class="form-control" type="date" name="expiry_date"></div>
+  <div class="col-12"><label class="form-label">Observação</label><input class="form-control" name="notes" maxlength="200"></div>
+  <div class="col-12"><button class="btn btn-primary">Registrar</button></div>
+</form>
+{% else %}<p class="mb-0">Cadastre pelo menos um produto antes de registrar movimentações. <a href="/produtos/novo">Cadastrar produto</a>.</p>{% endif %}
+</div></div>
+<h2 class="h5">Histórico recente</h2>
+<div class="card shadow-sm"><div class="table-responsive"><table class="table table-hover mb-0"><thead><tr><th>Data</th><th>Produto</th><th>Tipo</th><th>Quantidade</th><th>Observação</th></tr></thead><tbody>
+{% for m in movements %}<tr><td>{{ m.created_at }}</td><td>{{ m.product_name }}</td><td>{{ m.movement_type|capitalize }}</td><td>{{ m.quantity }}</td><td>{{ m.notes or "—" }}</td></tr>
+{% else %}<tr><td colspan="5" class="text-center text-muted py-3">Nenhuma movimentação registrada.</td></tr>{% endfor %}
+</tbody></table></div></div>
+{% endblock %}

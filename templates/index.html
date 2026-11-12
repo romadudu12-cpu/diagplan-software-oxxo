@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Painel | DiagPlan{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+  <div><h1 class="h3 mb-1">Painel de estoque</h1><p class="text-muted mb-0">Acompanhamento de produtos, quantidades e validade.</p></div>
+  <a class="btn btn-primary" href="/movimentacoes">Registrar movimentação</a>
+</div>
+<div class="row g-3 mb-4">
+  <div class="col-md-6"><div class="card shadow-sm"><div class="card-body"><div class="text-muted">Produtos cadastrados</div><div class="display-6 fw-semibold">{{ products_count }}</div></div></div></div>
+  <div class="col-md-6"><div class="card shadow-sm"><div class="card-body"><div class="text-muted">Unidades em estoque</div><div class="display-6 fw-semibold">{{ total_units }}</div></div></div></div>
+</div>
+<div class="row g-4">
+  <div class="col-lg-6">
+    <div class="card shadow-sm h-100"><div class="card-header bg-white fw-semibold">Atenção: validade em até 30 dias</div>
+      <div class="card-body">
+      {% if expiring %}<div class="table-responsive"><table class="table table-sm align-middle"><thead><tr><th>Produto</th><th>Qtd.</th><th>Validade</th></tr></thead><tbody>
+      {% for item in expiring %}<tr><td>{{ item.name }}</td><td>{{ item.quantity }}</td><td><span class="badge text-bg-warning">{{ item.expiry_date or "Não informada" }}</span></td></tr>{% endfor %}
+      </tbody></table></div>{% else %}<p class="text-muted mb-0">Nenhum lote próximo do vencimento.</p>{% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="card shadow-sm h-100"><div class="card-header bg-white fw-semibold">Movimentações recentes</div><div class="card-body">
+    {% if recent %}<div class="table-responsive"><table class="table table-sm"><thead><tr><th>Produto</th><th>Tipo</th><th>Qtd.</th></tr></thead><tbody>
+    {% for item in recent %}<tr><td>{{ item.product_name }}</td><td>{{ item.movement_type|capitalize }}</td><td>{{ item.quantity }}</td></tr>{% endfor %}
+    </tbody></table></div>{% else %}<p class="text-muted mb-0">Ainda não há movimentações registradas.</p>{% endif %}
+    </div></div>
+  </div>
+</div>
+{% endblock %}

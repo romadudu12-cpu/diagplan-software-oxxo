@@ -1,0 +1,5 @@
+body { background: #f5f7fa; }
+.navbar-brand { letter-spacing: .2px; }
+.card { border: 1px solid #e7ebf0; border-radius: 12px; }
+.card-header { border-bottom: 1px solid #edf0f3; }
+.table th { color: #526174; font-weight: 600; white-space: nowrap; }

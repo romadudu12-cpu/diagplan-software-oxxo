@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Produtos | DiagPlan{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3"><h1 class="h3">Produtos</h1><a class="btn btn-primary" href="/produtos/novo">Cadastrar produto</a></div>
+<div class="card shadow-sm"><div class="table-responsive"><table class="table table-hover align-middle mb-0">
+<thead><tr><th>Produto</th><th>Categoria</th><th>SKU</th><th>Estoque</th><th>Próxima validade</th></tr></thead><tbody>
+{% for p in products %}<tr><td class="fw-semibold">{{ p.name }}</td><td>{{ p.category or "—" }}</td><td>{{ p.sku or "—" }}</td><td>{{ p.stock }}</td><td>{{ p.next_expiry or "—" }}</td></tr>
+{% else %}<tr><td colspan="5" class="text-center text-muted py-4">Nenhum produto cadastrado.</td></tr>{% endfor %}
+</tbody></table></div></div>
+{% endblock %}
